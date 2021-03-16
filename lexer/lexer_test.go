@@ -15,6 +15,7 @@ func TestNextToken(t *testing.T) {
 				x + y;
 				};
 				let result = add(five, ten);
+				==
 				!-/*5;
 				5 < 10 > 5;
 `
@@ -58,7 +59,8 @@ func TestNextToken(t *testing.T) {
 		{token.IDENT, "ten"},
 		{token.RPAREN, ")"},
 		{token.SEMICOLON, ";"},
-		{token.EOF, ""},
+		// {token.BANG, "!"},
+		{token.EQ, "=="},
 	}
 
 	l := New(input)

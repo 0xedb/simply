@@ -40,11 +40,23 @@ func (l *Lexer) NextToken() token.Token {
 	case 0:
 		tok = token.Token{Kind: token.EOF}
 	case '=':
-		tok = makeToken(token.ASSIGN, l.ch)
+		if l.peekChar() == '=' {
+			ch := l.ch
+			l.readChar()
+			tok = token.Token{Kind: token.EQ, Value: string(ch) + string(l.ch)}
+		} else {
+			tok = makeToken(token.ASSIGN, l.ch)
+		}
 	case '+':
 		tok = makeToken(token.PLUS, l.ch)
 	case '!':
-		tok = makeToken(token.BANG, l.ch)
+		if l.peekChar() == '=' {
+			ch := l.ch
+			l.readChar()
+			tok = token.Token{Kind: token.NOT_EQ, Value: string(ch) + string(l.ch)}
+		} else {
+			tok = makeToken(token.BANG, l.ch)
+		}
 	case '-':
 		tok = makeToken(token.MINUS, l.ch)
 	case '*':
@@ -90,6 +102,14 @@ func (l *Lexer) NextToken() token.Token {
 
 func makeToken(tok string, ch byte) token.Token {
 	return token.Token{Kind: tok, Value: string(ch)}
+}
+
+func (l *Lexer) peekChar() byte {
+	if l.offset >= len(l.input) {
+		return 0
+	} else {
+		return l.input[l.offset]
+	}
 }
 
 func (l *Lexer) getIdentifier() string {
