@@ -64,6 +64,7 @@ func (l *Lexer) NextToken() token.Token {
 		} else if isLetter(l.ch) {
 			tok.Value = l.getIdentifier()
 			tok.Kind = token.LookUpIdentifier(tok.Value)
+			return tok
 		} else {
 			tok = makeToken(token.ILLEGAL, l.ch)
 			return tok
@@ -82,7 +83,7 @@ func makeToken(tok string, ch byte) token.Token {
 func (l *Lexer) getIdentifier() string {
 	pos := l.position
 
-	if isLetter(l.ch) {
+	for isLetter(l.ch) {
 		l.readChar()
 	}
 
