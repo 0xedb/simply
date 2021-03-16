@@ -11,6 +11,7 @@ const (
 	// Operators
 	ASSIGN = "="
 	PLUS   = "+"
+	BANG = "!"
 
 	// Delimiters
 	COMMA     = ","
