@@ -58,4 +58,4 @@ type ReturnStatement struct {
 }
 
 func (rs *ReturnStatement) statementNode()       {}
-func (rs *ReturnStatement) TokenLiteral() string { return rs.Token.Value }
+func (rs *ReturnStatement) TokenValue() string { return rs.Token.Value }
