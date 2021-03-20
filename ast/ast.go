@@ -144,7 +144,7 @@ type InfixExpression struct {
 	Right    Expression
 }
 
-func (oe *InfixExpression) expressionNode()      {}
+func (oe *InfixExpression) expressionNode()    {}
 func (oe *InfixExpression) TokenValue() string { return oe.Token.Value }
 func (oe *InfixExpression) String() string {
 	var out bytes.Buffer
@@ -155,3 +155,12 @@ func (oe *InfixExpression) String() string {
 	out.WriteString(")")
 	return out.String()
 }
+
+type Boolean struct {
+	Token token.Token
+	Value bool
+}
+
+func (b *Boolean) expressionNode()    {}
+func (b *Boolean) TokenValue() string { return b.Token.Value }
+func (b *Boolean) String() string     { return b.Token.Value }
