@@ -108,5 +108,14 @@ func (es *ExpressionStatement) String() string {
 	return ""
 }
 
-func (es *ExpressionStatement) statementNode()       {}
+func (es *ExpressionStatement) statementNode()     {}
 func (es *ExpressionStatement) TokenValue() string { return es.Token.Value }
+
+type IntegerLiteral struct {
+	Token token.Token
+	Value int64
+}
+
+func (il *IntegerLiteral) expressionNode()    {}
+func (il *IntegerLiteral) TokenValue() string { return il.Token.Value }
+func (il *IntegerLiteral) String() string     { return il.Token.Value }
