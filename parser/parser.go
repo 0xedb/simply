@@ -84,7 +84,7 @@ func (p *Parser) parseLetStatement() *ast.LetStatement {
 	if !p.expectPeek(token.ASSIGN) {
 		return nil
 	}
-	
+
 	// TODO: We're skipping the expressions until we
 	// encounter a semicolon
 	for !p.curTokenIs(token.SEMICOLON) {
@@ -103,7 +103,8 @@ func (p *Parser) expectPeek(t string) bool {
 	if p.peekTokenIs(t) {
 		p.nextToken()
 		return true
+	} else {
+		p.peekError(t)
+		return false
 	}
-
-	return false
 }
