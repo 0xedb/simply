@@ -109,4 +109,4 @@ func (es *ExpressionStatement) String() string {
 }
 
 func (es *ExpressionStatement) statementNode()       {}
-func (es *ExpressionStatement) TokenLiteral() string { return es.Token.Value }
+func (es *ExpressionStatement) TokenValue() string { return es.Token.Value }
